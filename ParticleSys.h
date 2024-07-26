@@ -1,0 +1,4 @@
+class ParticleSystem {
+  ParticleSystem();
+  ~ParticleSystem();
+};
