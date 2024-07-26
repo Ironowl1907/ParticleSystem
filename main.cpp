@@ -1,6 +1,10 @@
 #include "glad/include/glad/glad.h"
 #include "glfw/include/GLFW/glfw3.h"
+#include "glm/glm.hpp"
 #include <iostream>
+#include <vector>
+
+#include "ParticleSys.h"
 
 const unsigned int WINDOW_HEIGHT = 800;
 const unsigned int WINDOW_WIDTH = 800;

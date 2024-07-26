@@ -1,20 +1,29 @@
+#ifndef CLASS_PARTICLESYSTEM
+#define CLASS_PARTICLESYSTEM
+
+#ifndef GLM
+#define GLM
 #include "glm/glm.hpp"
+#endif
+
 #include "particle.h"
-#include <cstddef>
-#include <vector>
-
-struct ParticleProps {
-  glm::vec2 InitialPos, InitialVelocity;
-  glm::vec4 InitialColor, FinalColor;
-  float LifeTime = 1;
-};
-
 class ParticleSystem {
   ParticleSystem();
   ~ParticleSystem();
+
+public:
+  struct ParticleProps {
+    glm::vec2 InitialPos, InitialVelocity;
+    glm::vec4 InitialColor, FinalColor;
+    float sizeBeguin, sizeEnd;
+    float LifeTime = 1;
+  };
   void Emit(ParticleProps props);
   void OnUpdate(unsigned int timeSec);
   void OnRender();
-  size_t ParticleBuffer = 1000;
+  unsigned int poolIndex = 0;
+  size_t poolSize = 1000;
   std::vector<Particle> particlePool;
+  unsigned int VBO = 0, VAO = 0, EBO = 0;
 };
+#endif // CLASS_PARTICLESYSTEM

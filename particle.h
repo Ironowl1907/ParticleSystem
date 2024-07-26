@@ -3,6 +3,7 @@
 #include "glm/glm.hpp"
 
 class Particle {
+public:
   glm::vec2 position;
   glm::vec2 Velocity;
   glm::vec4 colorBegin, colorEnd;
