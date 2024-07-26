@@ -8,6 +8,6 @@ target_link_libraries(${PROJECT_NAME} glad)
 
 
 add_subdirectory(glfw)
-target_link_libraries(App glfw)
+target_link_libraries(${PROJECT_NAME} glfw)
 find_package(OpenGL REQUIRED)
-target_link_libraries(App OpenGL::GL)
+target_link_libraries(${PROJECT_NAME} OpenGL::GL)
