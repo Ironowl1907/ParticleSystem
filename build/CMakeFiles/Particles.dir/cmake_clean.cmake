@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Particles.dir/ParticleSys.cpp.o"
+  "CMakeFiles/Particles.dir/ParticleSys.cpp.o.d"
   "CMakeFiles/Particles.dir/main.cpp.o"
   "CMakeFiles/Particles.dir/main.cpp.o.d"
   "Particles"

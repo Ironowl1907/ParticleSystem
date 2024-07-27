@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/Particles.dir/main.cpp.o -o Particles  libglad.a glfw/src/libglfw3.a /usr/lib/librt.a -lm -ldl /usr/lib/libGLX.so /usr/lib/libOpenGL.so
+/usr/bin/c++ CMakeFiles/Particles.dir/main.cpp.o CMakeFiles/Particles.dir/ParticleSys.cpp.o -o Particles  libglad.a libglad.a glfw/src/libglfw3.a /usr/lib/librt.a -lm -ldl /usr/lib/libGLX.so /usr/lib/libOpenGL.so

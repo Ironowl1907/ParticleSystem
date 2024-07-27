@@ -65,6 +65,7 @@ CMAKE_BINARY_DIR = /home/ironowl/dev/ParticleSystem/build
 # The main recursive "all" target.
 all: CMakeFiles/Particles.dir/all
 all: CMakeFiles/glad.dir/all
+all: CMakeFiles/Shader.dir/all
 all: glfw/all
 .PHONY : all
 
@@ -75,6 +76,7 @@ preinstall: glfw/preinstall
 # The main recursive "clean" target.
 clean: CMakeFiles/Particles.dir/clean
 clean: CMakeFiles/glad.dir/clean
+clean: CMakeFiles/Shader.dir/clean
 clean: glfw/clean
 .PHONY : clean
 
@@ -136,12 +138,12 @@ CMakeFiles/Particles.dir/all: CMakeFiles/glad.dir/all
 CMakeFiles/Particles.dir/all: glfw/src/CMakeFiles/glfw.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Particles.dir/build.make CMakeFiles/Particles.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Particles.dir/build.make CMakeFiles/Particles.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ironowl/dev/ParticleSystem/build/CMakeFiles --progress-num=1,2 "Built target Particles"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ironowl/dev/ParticleSystem/build/CMakeFiles --progress-num=1,2,3 "Built target Particles"
 .PHONY : CMakeFiles/Particles.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Particles.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ironowl/dev/ParticleSystem/build/CMakeFiles 49
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ironowl/dev/ParticleSystem/build/CMakeFiles 50
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Particles.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ironowl/dev/ParticleSystem/build/CMakeFiles 0
 .PHONY : CMakeFiles/Particles.dir/rule
@@ -162,7 +164,7 @@ CMakeFiles/Particles.dir/clean:
 CMakeFiles/glad.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/glad.dir/build.make CMakeFiles/glad.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/glad.dir/build.make CMakeFiles/glad.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ironowl/dev/ParticleSystem/build/CMakeFiles --progress-num=3,4 "Built target glad"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ironowl/dev/ParticleSystem/build/CMakeFiles --progress-num=6,7 "Built target glad"
 .PHONY : CMakeFiles/glad.dir/all
 
 # Build rule for subdir invocation for target.
@@ -180,6 +182,32 @@ glad: CMakeFiles/glad.dir/rule
 CMakeFiles/glad.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/glad.dir/build.make CMakeFiles/glad.dir/clean
 .PHONY : CMakeFiles/glad.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/Shader.dir
+
+# All Build rule for target.
+CMakeFiles/Shader.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Shader.dir/build.make CMakeFiles/Shader.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Shader.dir/build.make CMakeFiles/Shader.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ironowl/dev/ParticleSystem/build/CMakeFiles --progress-num=4,5 "Built target Shader"
+.PHONY : CMakeFiles/Shader.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/Shader.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ironowl/dev/ParticleSystem/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Shader.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ironowl/dev/ParticleSystem/build/CMakeFiles 0
+.PHONY : CMakeFiles/Shader.dir/rule
+
+# Convenience name for target.
+Shader: CMakeFiles/Shader.dir/rule
+.PHONY : Shader
+
+# clean rule for target.
+CMakeFiles/Shader.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Shader.dir/build.make CMakeFiles/Shader.dir/clean
+.PHONY : CMakeFiles/Shader.dir/clean
 
 #=============================================================================
 # Target rules for target glfw/CMakeFiles/uninstall.dir
@@ -214,7 +242,7 @@ glfw/CMakeFiles/uninstall.dir/clean:
 glfw/src/CMakeFiles/glfw.dir/all:
 	$(MAKE) $(MAKESILENT) -f glfw/src/CMakeFiles/glfw.dir/build.make glfw/src/CMakeFiles/glfw.dir/depend
 	$(MAKE) $(MAKESILENT) -f glfw/src/CMakeFiles/glfw.dir/build.make glfw/src/CMakeFiles/glfw.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ironowl/dev/ParticleSystem/build/CMakeFiles --progress-num=5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49 "Built target glfw"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ironowl/dev/ParticleSystem/build/CMakeFiles --progress-num=8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52 "Built target glfw"
 .PHONY : glfw/src/CMakeFiles/glfw.dir/all
 
 # Build rule for subdir invocation for target.
@@ -240,7 +268,7 @@ glfw/src/CMakeFiles/glfw.dir/clean:
 glfw/src/CMakeFiles/update_mappings.dir/all:
 	$(MAKE) $(MAKESILENT) -f glfw/src/CMakeFiles/update_mappings.dir/build.make glfw/src/CMakeFiles/update_mappings.dir/depend
 	$(MAKE) $(MAKESILENT) -f glfw/src/CMakeFiles/update_mappings.dir/build.make glfw/src/CMakeFiles/update_mappings.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ironowl/dev/ParticleSystem/build/CMakeFiles --progress-num=50 "Built target update_mappings"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ironowl/dev/ParticleSystem/build/CMakeFiles --progress-num=53 "Built target update_mappings"
 .PHONY : glfw/src/CMakeFiles/update_mappings.dir/all
 
 # Build rule for subdir invocation for target.

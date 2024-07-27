@@ -9,9 +9,21 @@ public:
   glm::vec4 colorBegin, colorEnd;
 
   float sizeBegin, sizeEnd;
-  float LifeRemaining;
+  float totalLife, LifeRemaining;
 
   bool active = false;
+
+  void operator=(Particle &other) {
+    position = other.position;
+    Velocity = other.Velocity;
+    colorBegin = other.colorBegin;
+    colorEnd = other.colorEnd;
+    sizeEnd = other.sizeEnd;
+    sizeBegin = other.sizeBegin;
+    totalLife = other.totalLife;
+    LifeRemaining = other.LifeRemaining;
+    active = other.active;
+  }
 };
 
 #endif // Particle

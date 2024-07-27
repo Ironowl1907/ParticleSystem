@@ -4,7 +4,7 @@
 # compile C with /usr/bin/cc
 C_DEFINES = 
 
-C_INCLUDES = 
+C_INCLUDES = -I/home/ironowl/dev/ParticleSystem/glad/include -I/home/ironowl/dev/ParticleSystem/shaderLib/shader.h
 
 C_FLAGS = 
 

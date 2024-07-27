@@ -188,6 +188,19 @@ glad/fast:
 .PHONY : glad/fast
 
 #=============================================================================
+# Target rules for targets named Shader
+
+# Build rule for target.
+Shader: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Shader
+.PHONY : Shader
+
+# fast build rule for target.
+Shader/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Shader.dir/build.make CMakeFiles/Shader.dir/build
+.PHONY : Shader/fast
+
+#=============================================================================
 # Target rules for targets named uninstall
 
 # Build rule for target.
@@ -225,6 +238,30 @@ update_mappings: cmake_check_build_system
 update_mappings/fast:
 	$(MAKE) $(MAKESILENT) -f glfw/src/CMakeFiles/update_mappings.dir/build.make glfw/src/CMakeFiles/update_mappings.dir/build
 .PHONY : update_mappings/fast
+
+ParticleSys.o: ParticleSys.cpp.o
+.PHONY : ParticleSys.o
+
+# target to build an object file
+ParticleSys.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Particles.dir/build.make CMakeFiles/Particles.dir/ParticleSys.cpp.o
+.PHONY : ParticleSys.cpp.o
+
+ParticleSys.i: ParticleSys.cpp.i
+.PHONY : ParticleSys.i
+
+# target to preprocess a source file
+ParticleSys.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Particles.dir/build.make CMakeFiles/Particles.dir/ParticleSys.cpp.i
+.PHONY : ParticleSys.cpp.i
+
+ParticleSys.s: ParticleSys.cpp.s
+.PHONY : ParticleSys.s
+
+# target to generate assembly for a file
+ParticleSys.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Particles.dir/build.make CMakeFiles/Particles.dir/ParticleSys.cpp.s
+.PHONY : ParticleSys.cpp.s
 
 glad/src/glad.o: glad/src/glad.c.o
 .PHONY : glad/src/glad.o
@@ -274,6 +311,30 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Particles.dir/build.make CMakeFiles/Particles.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+shaderLib/main.o: shaderLib/main.cpp.o
+.PHONY : shaderLib/main.o
+
+# target to build an object file
+shaderLib/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Shader.dir/build.make CMakeFiles/Shader.dir/shaderLib/main.cpp.o
+.PHONY : shaderLib/main.cpp.o
+
+shaderLib/main.i: shaderLib/main.cpp.i
+.PHONY : shaderLib/main.i
+
+# target to preprocess a source file
+shaderLib/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Shader.dir/build.make CMakeFiles/Shader.dir/shaderLib/main.cpp.i
+.PHONY : shaderLib/main.cpp.i
+
+shaderLib/main.s: shaderLib/main.cpp.s
+.PHONY : shaderLib/main.s
+
+# target to generate assembly for a file
+shaderLib/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Shader.dir/build.make CMakeFiles/Shader.dir/shaderLib/main.cpp.s
+.PHONY : shaderLib/main.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -289,14 +350,21 @@ help:
 	@echo "... uninstall"
 	@echo "... update_mappings"
 	@echo "... Particles"
+	@echo "... Shader"
 	@echo "... glad"
 	@echo "... glfw"
+	@echo "... ParticleSys.o"
+	@echo "... ParticleSys.i"
+	@echo "... ParticleSys.s"
 	@echo "... glad/src/glad.o"
 	@echo "... glad/src/glad.i"
 	@echo "... glad/src/glad.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... shaderLib/main.o"
+	@echo "... shaderLib/main.i"
+	@echo "... shaderLib/main.s"
 .PHONY : help
 
 

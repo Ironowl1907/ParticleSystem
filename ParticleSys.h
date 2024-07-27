@@ -25,5 +25,15 @@ public:
   size_t poolSize = 1000;
   std::vector<Particle> particlePool;
   unsigned int VBO = 0, VAO = 0, EBO = 0;
+  ParticleProps defaultPartProp;
+
+  // Color
+  glm::vec4 color;
+  // Rotatations and scaling
+  glm::vec3 model;
+  // Movements
+  glm::vec3 transform;
+  // Camera
+  glm::vec3 projection;
 };
 #endif // CLASS_PARTICLESYSTEM
