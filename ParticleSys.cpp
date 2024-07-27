@@ -1,91 +1,111 @@
-#include "ParticleSys.h"
 #include "glad/include/glad/glad.h"
-#include "glm/glm/glm.hpp"
-#include "particle.h"
+
+#include "glm/glm.hpp"
+#include <GL/gl.h>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
+#include <vector>
+
 #include "shaderLib/shader.h"
-#include <iostream>
 
-void ParticleSystem::Emit(ParticleProps props) {
-  Particle &part = particlePool[poolIndex];
+#include "particleSys.hpp"
 
-  part.active = true;
+glm::vec3 lerp(glm::vec3 a, glm::vec3 b, float f) { return a + f * (b - a); }
+glm::vec4 lerp(glm::vec4 a, glm::vec4 b, float f) { return a + f * (b - a); }
+float lerp(float a, float b, float f) { return a + f * (b - a); }
 
-  part.position = props.InitialPos;
-  part.Velocity = props.InitialVelocity;
-
-  // Color
-  part.colorBegin = props.InitialColor;
-  part.colorEnd = props.FinalColor;
-
-  // Size
-  part.sizeBegin = props.sizeBeguin;
-  part.sizeEnd = props.sizeEnd;
-
-  poolIndex++;
-  if (poolIndex >= poolSize)
-    poolIndex = 0;
+ParticleSystem::ParticleSystem() {
+  particlePool.reserve(particlePoolSize);
+  poolPos = 0;
 }
 
-void ParticleSystem::OnRender() {
+void ParticleSystem::nextPart() {
+  ++poolPos;
+  if (poolPos >= particlePoolSize)
+    poolPos = 0;
+}
 
-  if (VBO) {
-    std::cout << "Genearting the buffers\n";
-    float vertices[] = {
-        -0.5f, 0.5f,  1.0f, //
-        0.5f,  0.5f,  1.0f, //
-        -0.5f, -0.5f, 1.0f, //
-        0.5f,  -0.5f, 1.0f  //
-    };
+void ParticleSystem::Emit(const particleProp &prop) {
+  while (particlePool[poolPos].active)
+    nextPart();
+  Particle &part = particlePool[poolPos];
 
-    glGenBuffers(1, &VBO);
-    glGenBuffers(1, &VBO);
+  part.possition = prop.possition;
 
-    glGenVertexArrays(1, &VAO);
-    glGenBuffers(1, &VBO);
+  part.velocity = prop.velocity;
 
-    // Binding Vertex Array Object (first thing)
-    glBindVertexArray(VAO);
+  part.InitColor = prop.InitColor;
+  part.FinalColor = prop.FinalColor;
 
-    // VBO
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+  part.InitSize = prop.InitSize;
+  part.FinalSize = prop.FinalSize;
 
-    glVertexAttribPointer(0, sizeof(vertices), GL_FLOAT, GL_FALSE,
-                          3 * sizeof(float), 0);
-    glEnableVertexAttribArray(0);
+  part.active = true;
+}
 
-    Shader ParticleShader;
-    ParticleShader.ParseFile("res/shaders/Particle.glsl");
-    ParticleShader.CreateShader();
-    glUseProgram(ParticleShader.ProgramID);
-
-    unsigned int modelUniform =
-        glGetUniformLocation(ParticleShader.ProgramID, "u_model");
-    unsigned int viewUniform =
-        glGetUniformLocation(ParticleShader.ProgramID, "u_view");
-    unsigned int transformUniform =
-        glGetUniformLocation(ParticleShader.ProgramID, "u_transform");
-
-    defaultPartProp.InitialPos = {2, 2};
-
-    defaultPartProp.sizeBeguin = 0.5f;
-    defaultPartProp.sizeEnd = 0.1f;
-
-    defaultPartProp.InitialColor = glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
-    defaultPartProp.FinalColor = glm::vec4(0.0f, 0.0f, 1.0f, 0.0f);
-
-    defaultPartProp.InitialVelocity = glm::vec2(1.0f, 1.0f);
-  }
-
+void ParticleSystem::onUpdate(const float &timeDelta) {
   for (Particle &part : particlePool) {
+
     if (!part.active)
       continue;
-    if (part.LifeRemaining < 0.0f) {
+
+    if (part.remainingLive > 0) {
       part.active = false;
       continue;
     }
-    // Render
-    transform = glm::translate(glm::mat4(1.0f),
-                               {part.position.x, part.position.y, 1.0f});
+    part.remainingLive -= timeDelta;
+  }
+}
+void ParticleSystem::onRender() {
+  if (!VAO) {
+    float vertices[] = {-0.5f, -0.5f, 0.0f, 0.5f,  -0.5f, 0.0f,
+                        0.5f,  0.5f,  0.0f, -0.5f, 0.5f,  0.0f};
+
+    glGenVertexArrays(1, &VAO);
+    glBindVertexArray(VAO);
+
+    GLuint VBO, EBO;
+    glGenBuffers(1, &VBO);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0);
+
+    unsigned int indices[] = {0, 1, 2, 2, 3, 0};
+
+    glGenBuffers(1, &EBO);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices,
+                 GL_STATIC_DRAW);
+
+    partShader.ParseFile("res/shaders/particleShader.glsl");
+    partShader.CreateShader();
+    uniModelPointer = glGetUniformLocation(partShader.ProgramID, "u_model");
+    uniTransformPointer =
+        glGetUniformLocation(partShader.ProgramID, "u_transform");
+    uniColorPointer = glGetUniformLocation(partShader.ProgramID, "u_color");
+  }
+  for (Particle &part : particlePool) {
+    if (!part.active)
+      continue;
+
+    float life = part.remainingLive / part.totalLive;
+
+    glm::vec4 color = lerp(part.InitColor, part.FinalColor, life);
+    float size = lerp(part.InitSize, part.FinalSize, life);
+
+    glm::mat4 transform =
+        glm::translate(glm::mat4(1.0f),
+                       {part.possition.x, part.possition.y, 1.0f}) *
+        glm::scale(glm::mat4(1.0f), glm::vec3(size, size, 1.0f));
+
+    glUniformMatrix4fv(uniTransformPointer, 1, GL_FALSE,
+                       glm::value_ptr(transform));
+    glUniform4f(uniColorPointer, color.r, color.g, color.b, color.a);
+
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
   }
 }
