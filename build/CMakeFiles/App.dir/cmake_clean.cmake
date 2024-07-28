@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "App"
   "App.pdb"
+  "CMakeFiles/App.dir/particleSystem.cpp.o"
+  "CMakeFiles/App.dir/particleSystem.cpp.o.d"
   "CMakeFiles/App.dir/sandBox.cpp.o"
   "CMakeFiles/App.dir/sandBox.cpp.o.d"
 )

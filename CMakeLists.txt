@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.29)
 
 project(App)
-add_executable(${PROJECT_NAME} sandBox.cpp)
+add_executable(${PROJECT_NAME} sandBox.cpp particleSystem.cpp)
 
 add_library(glad STATIC glad/src/glad.c)
 target_link_libraries(${PROJECT_NAME} glad)

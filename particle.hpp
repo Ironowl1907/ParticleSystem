@@ -2,16 +2,16 @@
 struct Particle {
   glm::vec2 position, velocity;
   glm::vec4 ColorBegin, ColorEnd;
-  glm::mat4 rotation;
+  float rotation;
   float sizeBegin, sizeEnd;
-  float live, remainingLife;
+  float live, remainingLife = 1;
   bool alive = false;
 };
 
 struct ParticleProp {
   glm::vec2 position, velocity;
   glm::vec4 ColorBegin, ColorEnd;
-  glm::mat4 rotation;
+  float rotation;
   float sizeBegin, sizeEnd;
-  float live;
+  float live = 1;
 };

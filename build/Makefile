@@ -263,6 +263,30 @@ glad/src/glad.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/glad.dir/build.make CMakeFiles/glad.dir/glad/src/glad.c.s
 .PHONY : glad/src/glad.c.s
 
+particleSystem.o: particleSystem.cpp.o
+.PHONY : particleSystem.o
+
+# target to build an object file
+particleSystem.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/App.dir/build.make CMakeFiles/App.dir/particleSystem.cpp.o
+.PHONY : particleSystem.cpp.o
+
+particleSystem.i: particleSystem.cpp.i
+.PHONY : particleSystem.i
+
+# target to preprocess a source file
+particleSystem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/App.dir/build.make CMakeFiles/App.dir/particleSystem.cpp.i
+.PHONY : particleSystem.cpp.i
+
+particleSystem.s: particleSystem.cpp.s
+.PHONY : particleSystem.s
+
+# target to generate assembly for a file
+particleSystem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/App.dir/build.make CMakeFiles/App.dir/particleSystem.cpp.s
+.PHONY : particleSystem.cpp.s
+
 sandBox.o: sandBox.cpp.o
 .PHONY : sandBox.o
 
@@ -332,6 +356,9 @@ help:
 	@echo "... glad/src/glad.o"
 	@echo "... glad/src/glad.i"
 	@echo "... glad/src/glad.s"
+	@echo "... particleSystem.o"
+	@echo "... particleSystem.i"
+	@echo "... particleSystem.s"
 	@echo "... sandBox.o"
 	@echo "... sandBox.i"
 	@echo "... sandBox.s"

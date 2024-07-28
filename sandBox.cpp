@@ -1,16 +1,29 @@
 #include "glad/include/glad/glad.h"
 #include "glfw/include/GLFW/glfw3.h"
+#include "shaderLib/shader.h"
+#include <glm/ext/matrix_transform.hpp>
 #include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include <iostream>
+#include <vector>
 
 #include "particle.hpp"
-#include "shaderLib/shader.h"
+#include "particleSystem.hpp"
 
 const unsigned int WINDOW_HEIGHT = 800;
 const unsigned int WINDOW_WIDTH = 800;
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
   glViewport(0, 0, width, height);
+}
+
+void GLAPIENTRY MessageCallback(GLenum source, GLenum type, GLuint id,
+                                GLenum severity, GLsizei length,
+                                const GLchar *message, const void *userParam) {
+  fprintf(stderr,
+          "GL CALLBACK: %s type = 0x%x, severity = 0x%x, message = %s\n",
+          (type == GL_DEBUG_TYPE_ERROR ? "** GL ERROR **" : ""), type, severity,
+          message);
 }
 
 int main() {
@@ -21,7 +34,7 @@ int main() {
   }
 
   // GLFW hints
-  glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+  glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
   glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
@@ -44,62 +57,41 @@ int main() {
     return -1;
   }
 
+  glEnable(GL_DEPTH_TEST);
+  glEnable(GL_DEBUG_OUTPUT);
+  glDebugMessageCallback(MessageCallback, 0);
+
   // Set the viewport
   glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
   glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-  glEnable(GL_DEPTH_TEST);
 
   ParticleProp defaultPart;
-  defaultPart.position = {0.0f, 0.0f};
+  defaultPart.position = {0.5f, 0.5f};
   defaultPart.velocity = {0.2f, 0.4};
   defaultPart.ColorBegin = {1.0f, 0.0f, 0.0f, 1.0f};
-  defaultPart.ColorEnd = {0.0f, 0.0f, 1.0f, 1.0f};
-  defaultPart.rotation = glm::mat4(1.0f);
+  defaultPart.ColorEnd = {0.0f, 0.0f, 1.0f, 0.0f};
+  defaultPart.rotation = 50.0f;
   defaultPart.sizeBegin = 1.0f;
-  defaultPart.sizeEnd = 0.1f;
+  defaultPart.sizeEnd = 0.001f;
 
-  float particleCoords[] = {
-      -0.5f, 0.5f,  0.0f, // top left
-      0.5f,  0.5f,  0.0f, // top right
-      -0.5f, -0.5f, 0.0f, // bottom left
-      0.5f,  -0.5f, 0.0f  // bottom right
-  };
+  defaultPart.live = 1.0f;
 
-  unsigned int vertexElements[] = {
-      0, 1, 2, //
-      2, 1, 3  //
-  };
+  ParticleSystem partSys;
+  partSys.emit(defaultPart);
 
-  unsigned int VAO, VBO, EBO;
-
-  glGenVertexArrays(1, &VAO);
-  glBindVertexArray(VAO);
-
-  glGenBuffers(1, &VBO);
-  glBindBuffer(GL_ARRAY_BUFFER, VBO);
-  glBufferData(GL_ARRAY_BUFFER, sizeof(particleCoords), particleCoords,
-               GL_STATIC_DRAW);
-
-  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
-  glEnableVertexAttribArray(0);
-
-  glGenBuffers(1, &EBO);
-  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-  glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(vertexElements), vertexElements,
-               GL_STATIC_DRAW);
-
-  // Shader
-  Shader partShader;
-  partShader.ParseFile("../res/shaders/particleShader.glsl");
-  partShader.CreateShader();
-  glUseProgram(partShader.ProgramID);
-
+  float deltaTime = 0;
+  float lastFrame = 0;
   // Main loop
   while (!glfwWindowShouldClose(window)) {
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    float currentFrame = glfwGetTime();
+    deltaTime = currentFrame - lastFrame;
+    lastFrame = currentFrame;
 
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    // Render
+    partSys.onUpdate(deltaTime);
+    partSys.onRender();
 
     glfwPollEvents();
     glfwSwapBuffers(window);
