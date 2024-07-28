@@ -1,16 +1,7 @@
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
 #include <iostream>
 
 #include "glad/include/glad/glad.h"
 #include "glfw/include/GLFW/glfw3.h"
-#include <vector>
-
-#include "particle.hpp"
-#include "shaderLib/shader.h"
-
-#include "particleSys.hpp"
 
 const unsigned int WINDOW_HEIGHT = 800;
 const unsigned int WINDOW_WIDTH = 800;
@@ -54,21 +45,10 @@ int main() {
   glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
   glEnable(GL_DEPTH_TEST);
 
-  float deltaTime = 0;
-  float lastFrame = 0;
-
-  ParticleSystem ParticleSys;
-
   // Main loop
   while (!glfwWindowShouldClose(window)) {
-    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    float currentFrame = glfwGetTime();
-    deltaTime = currentFrame - lastFrame;
-    lastFrame = currentFrame;
-
-    ParticleSys.onUpdate(deltaTime);
-    ParticleSys.onRender();
 
     glfwPollEvents();
     glfwSwapBuffers(window);

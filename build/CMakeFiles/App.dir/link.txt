@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/App.dir/SandBox.cpp.o CMakeFiles/App.dir/ParticleSys.cpp.o -o App  libglad.a libShaderLib.a glfw/src/libglfw3.a /usr/lib/librt.a -lm -ldl /usr/lib/libGLX.so /usr/lib/libOpenGL.so
+/usr/bin/c++ CMakeFiles/App.dir/sandBox.cpp.o -o App  libglad.a libShaderLib.a glfw/src/libglfw3.a /usr/lib/librt.a -lm -ldl /usr/lib/libGLX.so /usr/lib/libOpenGL.so

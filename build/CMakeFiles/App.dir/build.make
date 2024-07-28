@@ -69,44 +69,28 @@ include CMakeFiles/App.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/App.dir/flags.make
 
-CMakeFiles/App.dir/SandBox.cpp.o: CMakeFiles/App.dir/flags.make
-CMakeFiles/App.dir/SandBox.cpp.o: /home/ironowl/dev/ParticleSystem/SandBox.cpp
-CMakeFiles/App.dir/SandBox.cpp.o: CMakeFiles/App.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ironowl/dev/ParticleSystem/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/App.dir/SandBox.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/App.dir/SandBox.cpp.o -MF CMakeFiles/App.dir/SandBox.cpp.o.d -o CMakeFiles/App.dir/SandBox.cpp.o -c /home/ironowl/dev/ParticleSystem/SandBox.cpp
+CMakeFiles/App.dir/sandBox.cpp.o: CMakeFiles/App.dir/flags.make
+CMakeFiles/App.dir/sandBox.cpp.o: /home/ironowl/dev/ParticleSystem/sandBox.cpp
+CMakeFiles/App.dir/sandBox.cpp.o: CMakeFiles/App.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ironowl/dev/ParticleSystem/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/App.dir/sandBox.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/App.dir/sandBox.cpp.o -MF CMakeFiles/App.dir/sandBox.cpp.o.d -o CMakeFiles/App.dir/sandBox.cpp.o -c /home/ironowl/dev/ParticleSystem/sandBox.cpp
 
-CMakeFiles/App.dir/SandBox.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/App.dir/SandBox.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ironowl/dev/ParticleSystem/SandBox.cpp > CMakeFiles/App.dir/SandBox.cpp.i
+CMakeFiles/App.dir/sandBox.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/App.dir/sandBox.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ironowl/dev/ParticleSystem/sandBox.cpp > CMakeFiles/App.dir/sandBox.cpp.i
 
-CMakeFiles/App.dir/SandBox.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/App.dir/SandBox.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ironowl/dev/ParticleSystem/SandBox.cpp -o CMakeFiles/App.dir/SandBox.cpp.s
-
-CMakeFiles/App.dir/ParticleSys.cpp.o: CMakeFiles/App.dir/flags.make
-CMakeFiles/App.dir/ParticleSys.cpp.o: /home/ironowl/dev/ParticleSystem/ParticleSys.cpp
-CMakeFiles/App.dir/ParticleSys.cpp.o: CMakeFiles/App.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ironowl/dev/ParticleSystem/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/App.dir/ParticleSys.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/App.dir/ParticleSys.cpp.o -MF CMakeFiles/App.dir/ParticleSys.cpp.o.d -o CMakeFiles/App.dir/ParticleSys.cpp.o -c /home/ironowl/dev/ParticleSystem/ParticleSys.cpp
-
-CMakeFiles/App.dir/ParticleSys.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/App.dir/ParticleSys.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ironowl/dev/ParticleSystem/ParticleSys.cpp > CMakeFiles/App.dir/ParticleSys.cpp.i
-
-CMakeFiles/App.dir/ParticleSys.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/App.dir/ParticleSys.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ironowl/dev/ParticleSystem/ParticleSys.cpp -o CMakeFiles/App.dir/ParticleSys.cpp.s
+CMakeFiles/App.dir/sandBox.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/App.dir/sandBox.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ironowl/dev/ParticleSystem/sandBox.cpp -o CMakeFiles/App.dir/sandBox.cpp.s
 
 # Object files for target App
 App_OBJECTS = \
-"CMakeFiles/App.dir/SandBox.cpp.o" \
-"CMakeFiles/App.dir/ParticleSys.cpp.o"
+"CMakeFiles/App.dir/sandBox.cpp.o"
 
 # External object files for target App
 App_EXTERNAL_OBJECTS =
 
-App: CMakeFiles/App.dir/SandBox.cpp.o
-App: CMakeFiles/App.dir/ParticleSys.cpp.o
+App: CMakeFiles/App.dir/sandBox.cpp.o
 App: CMakeFiles/App.dir/build.make
 App: libglad.a
 App: libShaderLib.a
@@ -116,7 +100,7 @@ App: /usr/lib/libm.so
 App: /usr/lib/libGLX.so
 App: /usr/lib/libOpenGL.so
 App: CMakeFiles/App.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ironowl/dev/ParticleSystem/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable App"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ironowl/dev/ParticleSystem/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable App"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/App.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

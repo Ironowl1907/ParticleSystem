@@ -239,54 +239,6 @@ update_mappings/fast:
 	$(MAKE) $(MAKESILENT) -f glfw/src/CMakeFiles/update_mappings.dir/build.make glfw/src/CMakeFiles/update_mappings.dir/build
 .PHONY : update_mappings/fast
 
-ParticleSys.o: ParticleSys.cpp.o
-.PHONY : ParticleSys.o
-
-# target to build an object file
-ParticleSys.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/App.dir/build.make CMakeFiles/App.dir/ParticleSys.cpp.o
-.PHONY : ParticleSys.cpp.o
-
-ParticleSys.i: ParticleSys.cpp.i
-.PHONY : ParticleSys.i
-
-# target to preprocess a source file
-ParticleSys.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/App.dir/build.make CMakeFiles/App.dir/ParticleSys.cpp.i
-.PHONY : ParticleSys.cpp.i
-
-ParticleSys.s: ParticleSys.cpp.s
-.PHONY : ParticleSys.s
-
-# target to generate assembly for a file
-ParticleSys.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/App.dir/build.make CMakeFiles/App.dir/ParticleSys.cpp.s
-.PHONY : ParticleSys.cpp.s
-
-SandBox.o: SandBox.cpp.o
-.PHONY : SandBox.o
-
-# target to build an object file
-SandBox.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/App.dir/build.make CMakeFiles/App.dir/SandBox.cpp.o
-.PHONY : SandBox.cpp.o
-
-SandBox.i: SandBox.cpp.i
-.PHONY : SandBox.i
-
-# target to preprocess a source file
-SandBox.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/App.dir/build.make CMakeFiles/App.dir/SandBox.cpp.i
-.PHONY : SandBox.cpp.i
-
-SandBox.s: SandBox.cpp.s
-.PHONY : SandBox.s
-
-# target to generate assembly for a file
-SandBox.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/App.dir/build.make CMakeFiles/App.dir/SandBox.cpp.s
-.PHONY : SandBox.cpp.s
-
 glad/src/glad.o: glad/src/glad.c.o
 .PHONY : glad/src/glad.o
 
@@ -310,6 +262,30 @@ glad/src/glad.s: glad/src/glad.c.s
 glad/src/glad.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/glad.dir/build.make CMakeFiles/glad.dir/glad/src/glad.c.s
 .PHONY : glad/src/glad.c.s
+
+sandBox.o: sandBox.cpp.o
+.PHONY : sandBox.o
+
+# target to build an object file
+sandBox.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/App.dir/build.make CMakeFiles/App.dir/sandBox.cpp.o
+.PHONY : sandBox.cpp.o
+
+sandBox.i: sandBox.cpp.i
+.PHONY : sandBox.i
+
+# target to preprocess a source file
+sandBox.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/App.dir/build.make CMakeFiles/App.dir/sandBox.cpp.i
+.PHONY : sandBox.cpp.i
+
+sandBox.s: sandBox.cpp.s
+.PHONY : sandBox.s
+
+# target to generate assembly for a file
+sandBox.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/App.dir/build.make CMakeFiles/App.dir/sandBox.cpp.s
+.PHONY : sandBox.cpp.s
 
 shaderLib/main.o: shaderLib/main.cpp.o
 .PHONY : shaderLib/main.o
@@ -353,15 +329,12 @@ help:
 	@echo "... ShaderLib"
 	@echo "... glad"
 	@echo "... glfw"
-	@echo "... ParticleSys.o"
-	@echo "... ParticleSys.i"
-	@echo "... ParticleSys.s"
-	@echo "... SandBox.o"
-	@echo "... SandBox.i"
-	@echo "... SandBox.s"
 	@echo "... glad/src/glad.o"
 	@echo "... glad/src/glad.i"
 	@echo "... glad/src/glad.s"
+	@echo "... sandBox.o"
+	@echo "... sandBox.i"
+	@echo "... sandBox.s"
 	@echo "... shaderLib/main.o"
 	@echo "... shaderLib/main.i"
 	@echo "... shaderLib/main.s"

@@ -9,10 +9,6 @@
 void Shader::ParseFile(const std::string &filepath) {
   std::cout << "[SHADER INFO] Parsing file\n";
   std::ifstream file(filepath);
-  if (!file) {
-    std::cout << "[ERROR] No File\n";
-    return;
-  }
   std::stringstream ss[2];
   ShaderType type = ShaderType::NONE;
 
@@ -29,17 +25,13 @@ void Shader::ParseFile(const std::string &filepath) {
         type = ShaderType::FRAGMENT;
       }
     } else {
-      if (type != ShaderType::NONE)
-        ss[(int)type] << line << '\n';
+      if (type != ShaderType::NONE )ss[(int)type] << line << '\n';
     }
   }
   Shader::ShaderSource[(int)ShaderType::VERTEX] =
       ss[(int)ShaderType::VERTEX].str();
   Shader::ShaderSource[(int)ShaderType::FRAGMENT] =
       ss[(int)ShaderType::FRAGMENT].str();
-
-  /*std::cout << "[Vertex] " << ShaderSource[0] << '\n'*/
-  /*          << "[Fragment] " << ShaderSource[1] << '\n';*/
 }
 
 unsigned int Shader::CompileShader(unsigned int type) {
