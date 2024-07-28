@@ -1,14 +1,14 @@
-#include "glad/include/glad/glad.h"
-
-#include "glm/glm.hpp"
-#include <GL/gl.h>
+#include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+
+#include "glad/include/glad/glad.h"
 
 #include <vector>
 
 #include "shaderLib/shader.h"
 
+#include "particle.hpp"
 #include "particleSys.hpp"
 
 glm::vec3 lerp(glm::vec3 a, glm::vec3 b, float f) { return a + f * (b - a); }
@@ -19,6 +19,8 @@ ParticleSystem::ParticleSystem() {
   particlePool.reserve(particlePoolSize);
   poolPos = 0;
 }
+
+ParticleSystem::~ParticleSystem() { glDeleteVertexArrays(1, &VAO); }
 
 void ParticleSystem::nextPart() {
   ++poolPos;
@@ -80,9 +82,9 @@ void ParticleSystem::onRender() {
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices,
                  GL_STATIC_DRAW);
 
-    partShader.ParseFile("res/shaders/particleShader.glsl");
+    partShader.ParseFile("../res/shaders/particleShader.glsl");
     partShader.CreateShader();
-    uniModelPointer = glGetUniformLocation(partShader.ProgramID, "u_model");
+
     uniTransformPointer =
         glGetUniformLocation(partShader.ProgramID, "u_transform");
     uniColorPointer = glGetUniformLocation(partShader.ProgramID, "u_color");

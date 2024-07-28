@@ -1,0 +1,13 @@
+file(REMOVE_RECURSE
+  "App"
+  "App.pdb"
+  "CMakeFiles/App.dir/ParticleSys.cpp.o"
+  "CMakeFiles/App.dir/ParticleSys.cpp.o.d"
+  "CMakeFiles/App.dir/SandBox.cpp.o"
+  "CMakeFiles/App.dir/SandBox.cpp.o.d"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/App.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()
