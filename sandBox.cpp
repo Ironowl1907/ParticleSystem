@@ -59,7 +59,9 @@ int main() {
 
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_DEBUG_OUTPUT);
+  glEnable(GL_BLEND);
   glDebugMessageCallback(MessageCallback, 0);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
   // Set the viewport
   glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -67,17 +69,29 @@ int main() {
 
   ParticleProp defaultPart;
   defaultPart.position = {0.5f, 0.5f};
-  defaultPart.velocity = {0.2f, 0.4};
+  defaultPart.velocity = {0.02f, 0.04};
   defaultPart.ColorBegin = {1.0f, 0.0f, 0.0f, 1.0f};
-  defaultPart.ColorEnd = {0.0f, 0.0f, 1.0f, 0.0f};
+  defaultPart.ColorEnd = {1.0f, 1.0f, 1.0f, 0.0f};
   defaultPart.rotation = 50.0f;
   defaultPart.sizeBegin = 1.0f;
   defaultPart.sizeEnd = 0.001f;
 
-  defaultPart.live = 1.0f;
+  defaultPart.live = 10.0f;
+
+  ParticleProp defaultPart2;
+  defaultPart2.position = {0.5f, 0.5f};
+  defaultPart2.velocity = {-0.02f, -0.04};
+  defaultPart2.ColorBegin = {1.0f, 0.0f, 0.0f, 1.0f};
+  defaultPart2.ColorEnd = {1.0f, 1.0f, 1.0f, 0.0f};
+  defaultPart2.rotation = 50.0f;
+  defaultPart2.sizeBegin = 1.0f;
+  defaultPart2.sizeEnd = 0.001f;
+
+  defaultPart.live = 10.0f;
 
   ParticleSystem partSys;
   partSys.emit(defaultPart);
+  partSys.emit(defaultPart2);
 
   float deltaTime = 0;
   float lastFrame = 0;

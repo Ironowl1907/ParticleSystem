@@ -11,7 +11,7 @@ public:
 private:
   std::vector<Particle> particlePool;
   size_t poolSize = 1000;
-  unsigned int poolIndex = 0;
+  unsigned int poolIndex;
 
   Shader partShader;
   unsigned int VAO = 0;

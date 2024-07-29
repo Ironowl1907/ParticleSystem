@@ -14,23 +14,28 @@
 #include "particleSystem.hpp"
 #include <glm/gtx/compatibility.hpp>
 
-ParticleSystem::ParticleSystem() { particlePool.resize(poolSize); }
+ParticleSystem::ParticleSystem() {
+  particlePool.resize(poolSize);
+  poolIndex = 0;
+}
 ParticleSystem::~ParticleSystem() {}
 void ParticleSystem::nextPart() {
-  ++poolIndex;
-  if (poolIndex >= poolSize)
-    poolIndex = 0;
+  std::cout << "poolIndex before: " << poolIndex << ' ';
+  poolIndex = (poolIndex < poolSize) ? poolIndex + 1 : 0;
+  std::cout << "poolIndex after: " << poolIndex << '\n';
 }
 
 void ParticleSystem::onUpdate(const float &deltatime) {
   for (Particle &part : particlePool) {
     if (!part.alive)
       continue;
+    /*std::cout << "Up: " << poolIndex << '\n';*/
     if (part.remainingLife < 0) {
       part.alive = false;
       continue;
     }
     part.remainingLife -= deltatime;
+    part.position += glm::vec2(part.velocity.x, part.velocity.y) * deltatime;
   }
 }
 void ParticleSystem::onRender() {
@@ -80,10 +85,9 @@ void ParticleSystem::onRender() {
     if (!part.alive)
       continue;
 
-    std::cout << "Rendering: " << poolIndex << '\n';
+    std::cout << poolIndex << " alive\n";
+
     float life = part.remainingLife / part.live;
-    std::cout << "RemLife: " << part.remainingLife << " live: " << part.live
-              << '\n';
     // Color
     glm::vec4 color = glm::lerp(part.ColorEnd, part.ColorBegin, life);
 
@@ -109,7 +113,7 @@ void ParticleSystem::onRender() {
 }
 
 void ParticleSystem::emit(const ParticleProp &prop) {
-  std::cout << "Emiting particle" << '\n';
+  /*std::cout << "Emiting particle on index: " << poolIndex << '\n';*/
   while (particlePool[poolIndex].alive)
     nextPart();
 
@@ -127,8 +131,9 @@ void ParticleSystem::emit(const ParticleProp &prop) {
   part.rotation = prop.rotation;
 
   part.live = prop.live;
+  part.remainingLife = prop.live;
 
   part.alive = true;
 
-  nextPart();
+  /*nextPart();*/
 }
