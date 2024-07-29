@@ -27,9 +27,9 @@ void ParticleSystem::onUpdate(const float &deltatime) {
   for (Particle &part : particlePool) {
     if (!part.alive)
       continue;
-    /*std::cout << "Particle " << &part - &particlePool[0] << ": Position = ("*/
-    /*          << part.position.x << ", " << part.position.y*/
-    /*          << "), Remaining Life = " << part.remainingLife << '\n';*/
+    std::cout << "Particle " << &part - &particlePool[0] << ": Position = ("
+              << part.position.x << ", " << part.position.y
+              << "), Remaining Life = " << part.remainingLife << '\n';
     if (part.remainingLife < 0) {
       part.alive = false;
       continue;
@@ -38,7 +38,7 @@ void ParticleSystem::onUpdate(const float &deltatime) {
     part.position += glm::vec2(part.velocity.x, part.velocity.y) * deltatime;
   }
 }
-void ParticleSystem::onRender() {
+void ParticleSystem::onRender(const glm::mat4 &cameraView) {
   if (!VAO) {
     std::cout << "Creating buffers" << '\n';
 
@@ -79,6 +79,7 @@ void ParticleSystem::onRender() {
     // Uniforms
     uniTransLoc = glGetUniformLocation(partShader.ProgramID, "u_Transform");
     uniColorLoc = glGetUniformLocation(partShader.ProgramID, "u_Color");
+    uniViewLoc = glGetUniformLocation(partShader.ProgramID, "u_View");
   }
 
   for (Particle &part : particlePool) {
@@ -103,6 +104,7 @@ void ParticleSystem::onRender() {
     glm::mat4 transform = translate * rotate * scaleMat;
     glUniformMatrix4fv(uniTransLoc, 1, GL_FALSE, glm::value_ptr(transform));
     glUniform4f(uniColorLoc, color.r, color.g, color.b, color.a);
+    glUniformMatrix4fv(uniViewLoc, 1, GL_FALSE, glm::value_ptr(cameraView));
 
     glBindVertexArray(VAO);
     glUseProgram(partShader.ProgramID);

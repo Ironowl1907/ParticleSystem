@@ -76,7 +76,7 @@ int main() {
   defaultPart.sizeBegin = 1.0f;
   defaultPart.sizeEnd = 0.8f;
 
-  defaultPart.live = 1.0f;
+  defaultPart.live = 10.0f;
 
   ParticleProp defaultPart2;
   defaultPart2.position = {0.5f, 0.5f};
@@ -87,11 +87,18 @@ int main() {
   defaultPart2.sizeBegin = 1.0f;
   defaultPart2.sizeEnd = 0.8f;
 
-  defaultPart2.live = 1.0f;
+  defaultPart2.live = 10.0f;
 
   ParticleSystem partSys;
   partSys.emit(defaultPart);
   partSys.emit(defaultPart2);
+
+  // Camera
+  glm::vec3 camera_pos = glm::vec3(0.0f, 0.0f, 1.0f);
+  glm::vec3 target_pos = glm::vec3(0.0f, 0.0f, 0.0f);
+  glm::mat4 view =
+      glm::lookAt(camera_pos, target_pos, glm::vec3(0.0f, 1.0f, 0.0f));
+  view = glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f, 0.1f, 100.0f) * view;
 
   float deltaTime = 0;
   float lastFrame = 0;
@@ -106,7 +113,7 @@ int main() {
 
     // Render
     partSys.onUpdate(deltaTime);
-    partSys.onRender();
+    partSys.onRender(view);
 
     glfwPollEvents();
     glfwSwapBuffers(window);

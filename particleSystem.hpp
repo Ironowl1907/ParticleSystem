@@ -6,7 +6,7 @@ public:
   ~ParticleSystem();
 
   void onUpdate(const float &deltaTime);
-  void onRender();
+  void onRender(const glm::mat4 &cameraView);
   void emit(const ParticleProp &prop);
   void nextPart();
 
@@ -23,4 +23,5 @@ private:
   unsigned int uniTransLoc = 0;
   unsigned int uniColorLoc = 0;
   unsigned int uniViewLoc = 0;
+  unsigned int uniProjectionLoc = 0;
 };
