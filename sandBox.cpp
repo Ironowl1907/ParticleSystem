@@ -26,6 +26,16 @@ void GLAPIENTRY MessageCallback(GLenum source, GLenum type, GLuint id,
           message);
 }
 
+ParticleSystem partSys;
+ParticleProp defaultParticle;
+void cursor_position_callback(GLFWwindow *window, double xpos, double ypos) {
+  float ndc_x = xpos / 800.0 * 2.0 - 1.0;
+  float ndc_y = 1.0 - ypos / 800.0 * 2.0;
+  defaultParticle.position.x = ndc_x;
+  defaultParticle.position.y = ndc_y;
+  partSys.emit(defaultParticle);
+}
+
 int main() {
   // Init GLFW
   if (!glfwInit()) {
@@ -61,37 +71,22 @@ int main() {
   glEnable(GL_DEBUG_OUTPUT);
   glEnable(GL_BLEND);
   glDebugMessageCallback(MessageCallback, 0);
+  glfwSetCursorPosCallback(window, cursor_position_callback);
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
   // Set the viewport
   glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
   glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
-  ParticleProp defaultPart;
-  defaultPart.position = {0.5f, 0.5f};
-  defaultPart.velocity = {0.02f, 0.04};
-  defaultPart.ColorBegin = {1.0f, 0.0f, 0.0f, 1.0f};
-  defaultPart.ColorEnd = {1.0f, 1.0f, 1.0f, 0.0f};
-  defaultPart.rotation = 50.0f;
-  defaultPart.sizeBegin = 1.0f;
-  defaultPart.sizeEnd = 0.8f;
+  defaultParticle.position = {0.5f, 0.5f};
+  defaultParticle.velocity = {-0.02f, -0.04};
+  defaultParticle.ColorBegin = {1.0f, 0.0f, 0.0f, 1.0f};
+  defaultParticle.ColorEnd = {1.0f, 1.0f, 1.0f, 0.0f};
+  defaultParticle.rotation = 50.0f;
+  defaultParticle.sizeBegin = 0.2f;
+  defaultParticle.sizeEnd = 0.1f;
 
-  defaultPart.live = 10.0f;
-
-  ParticleProp defaultPart2;
-  defaultPart2.position = {0.5f, 0.5f};
-  defaultPart2.velocity = {-0.02f, -0.04};
-  defaultPart2.ColorBegin = {1.0f, 0.0f, 0.0f, 1.0f};
-  defaultPart2.ColorEnd = {1.0f, 1.0f, 1.0f, 0.0f};
-  defaultPart2.rotation = 50.0f;
-  defaultPart2.sizeBegin = 1.0f;
-  defaultPart2.sizeEnd = 0.8f;
-
-  defaultPart2.live = 10.0f;
-
-  ParticleSystem partSys;
-  partSys.emit(defaultPart);
-  partSys.emit(defaultPart2);
+  defaultParticle.live = 1.0f;
 
   // Camera
   glm::vec3 camera_pos = glm::vec3(0.0f, 0.0f, 1.0f);

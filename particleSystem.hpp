@@ -11,6 +11,7 @@ public:
   void nextPart();
 
 private:
+  static unsigned int WINDOW_HEIGHT2, WINDOW_WIDTH2;
   std::vector<Particle> particlePool;
   size_t poolSize = 1000;
   unsigned int poolIndex;

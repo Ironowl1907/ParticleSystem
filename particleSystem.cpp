@@ -1,4 +1,5 @@
 #include "glad/include/glad/glad.h"
+#include "glfw/include/GLFW/glfw3.h"
 #include <glm/ext/matrix_transform.hpp>
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -27,9 +28,9 @@ void ParticleSystem::onUpdate(const float &deltatime) {
   for (Particle &part : particlePool) {
     if (!part.alive)
       continue;
-    std::cout << "Particle " << &part - &particlePool[0] << ": Position = ("
-              << part.position.x << ", " << part.position.y
-              << "), Remaining Life = " << part.remainingLife << '\n';
+    /*std::cout << "Particle " << &part - &particlePool[0] << ": Position = ("*/
+    /*          << part.position.x << ", " << part.position.y*/
+    /*          << "), Remaining Life = " << part.remainingLife << '\n';*/
     if (part.remainingLife < 0) {
       part.alive = false;
       continue;
@@ -113,8 +114,6 @@ void ParticleSystem::onRender(const glm::mat4 &cameraView) {
 }
 
 void ParticleSystem::emit(const ParticleProp &prop) {
-  while (particlePool[poolIndex].alive)
-    nextPart();
 
   Particle &part = particlePool[poolIndex];
 
@@ -134,5 +133,5 @@ void ParticleSystem::emit(const ParticleProp &prop) {
 
   part.alive = true;
 
-  /*nextPart();*/
+  nextPart();
 }
