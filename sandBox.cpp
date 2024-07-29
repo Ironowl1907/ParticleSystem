@@ -74,9 +74,9 @@ int main() {
   defaultPart.ColorEnd = {1.0f, 1.0f, 1.0f, 0.0f};
   defaultPart.rotation = 50.0f;
   defaultPart.sizeBegin = 1.0f;
-  defaultPart.sizeEnd = 0.001f;
+  defaultPart.sizeEnd = 0.8f;
 
-  defaultPart.live = 10.0f;
+  defaultPart.live = 1.0f;
 
   ParticleProp defaultPart2;
   defaultPart2.position = {0.5f, 0.5f};
@@ -85,9 +85,9 @@ int main() {
   defaultPart2.ColorEnd = {1.0f, 1.0f, 1.0f, 0.0f};
   defaultPart2.rotation = 50.0f;
   defaultPart2.sizeBegin = 1.0f;
-  defaultPart2.sizeEnd = 0.001f;
+  defaultPart2.sizeEnd = 0.8f;
 
-  defaultPart.live = 10.0f;
+  defaultPart2.live = 1.0f;
 
   ParticleSystem partSys;
   partSys.emit(defaultPart);
@@ -95,6 +95,7 @@ int main() {
 
   float deltaTime = 0;
   float lastFrame = 0;
+
   // Main loop
   while (!glfwWindowShouldClose(window)) {
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);

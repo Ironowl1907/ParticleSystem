@@ -5,14 +5,14 @@
 #include <glm/trigonometric.hpp>
 #include <iostream>
 #include <vector>
+#define GLM_ENABLE_EXPERIMENTAL
+#include <glm/gtc/constants.hpp>
+#include <glm/gtx/compatibility.hpp>
 
 #include "particle.hpp"
 #include "shaderLib/shader.h"
 
-#include <glm/gtc/constants.hpp>
-#define GLM_ENABLE_EXPERIMENTAL
 #include "particleSystem.hpp"
-#include <glm/gtx/compatibility.hpp>
 
 ParticleSystem::ParticleSystem() {
   particlePool.resize(poolSize);
@@ -20,16 +20,16 @@ ParticleSystem::ParticleSystem() {
 }
 ParticleSystem::~ParticleSystem() {}
 void ParticleSystem::nextPart() {
-  std::cout << "poolIndex before: " << poolIndex << ' ';
   poolIndex = (poolIndex < poolSize) ? poolIndex + 1 : 0;
-  std::cout << "poolIndex after: " << poolIndex << '\n';
 }
 
 void ParticleSystem::onUpdate(const float &deltatime) {
   for (Particle &part : particlePool) {
     if (!part.alive)
       continue;
-    /*std::cout << "Up: " << poolIndex << '\n';*/
+    /*std::cout << "Particle " << &part - &particlePool[0] << ": Position = ("*/
+    /*          << part.position.x << ", " << part.position.y*/
+    /*          << "), Remaining Life = " << part.remainingLife << '\n';*/
     if (part.remainingLife < 0) {
       part.alive = false;
       continue;
@@ -85,8 +85,6 @@ void ParticleSystem::onRender() {
     if (!part.alive)
       continue;
 
-    std::cout << poolIndex << " alive\n";
-
     float life = part.remainingLife / part.live;
     // Color
     glm::vec4 color = glm::lerp(part.ColorEnd, part.ColorBegin, life);
@@ -113,7 +111,6 @@ void ParticleSystem::onRender() {
 }
 
 void ParticleSystem::emit(const ParticleProp &prop) {
-  /*std::cout << "Emiting particle on index: " << poolIndex << '\n';*/
   while (particlePool[poolIndex].alive)
     nextPart();
 

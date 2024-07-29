@@ -1,3 +1,4 @@
+#pragma once
 
 struct Particle {
   glm::vec2 position, velocity;
