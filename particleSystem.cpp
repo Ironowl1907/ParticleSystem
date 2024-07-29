@@ -1,5 +1,4 @@
 #include "glad/include/glad/glad.h"
-#include "glfw/include/GLFW/glfw3.h"
 #include <glm/ext/matrix_transform.hpp>
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -19,7 +18,11 @@ ParticleSystem::ParticleSystem() {
   particlePool.resize(poolSize);
   poolIndex = 0;
 }
-ParticleSystem::~ParticleSystem() {}
+ParticleSystem::~ParticleSystem() {
+  glDeleteBuffers(1, &VBO);
+  glDeleteBuffers(1, &EBO);
+  glDeleteVertexArrays(1, &VAO);
+}
 void ParticleSystem::nextPart() {
   poolIndex = (poolIndex < poolSize) ? poolIndex + 1 : 0;
 }

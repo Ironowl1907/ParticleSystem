@@ -3,7 +3,6 @@
 
 CMakeFiles/App.dir/particleSystem.cpp.o: /home/ironowl/dev/ParticleSystem/particleSystem.cpp \
   /home/ironowl/dev/ParticleSystem/glad/include/glad/glad.h \
-  /home/ironowl/dev/ParticleSystem/glfw/include/GLFW/glfw3.h \
   /home/ironowl/dev/ParticleSystem/particle.hpp \
   /home/ironowl/dev/ParticleSystem/particleSystem.hpp \
   /home/ironowl/dev/ParticleSystem/shaderLib/shader.h \
@@ -860,6 +859,8 @@ CMakeFiles/App.dir/sandBox.cpp.o: /home/ironowl/dev/ParticleSystem/sandBox.cpp \
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include/syslimits.h
 
 
+/home/ironowl/dev/ParticleSystem/glfw/include/GLFW/glfw3.h:
+
 /home/ironowl/dev/ParticleSystem/sandBox.cpp:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include/stdint.h:
@@ -1086,8 +1087,6 @@ CMakeFiles/App.dir/sandBox.cpp.o: /home/ironowl/dev/ParticleSystem/sandBox.cpp \
 
 /usr/include/glm/detail/type_vec2.inl:
 
-/usr/include/glm/detail/type_vec1.inl:
-
 /usr/include/c++/14.1.1/bits/refwrap.h:
 
 /usr/include/bits/xopen_lim.h:
@@ -1105,6 +1104,10 @@ CMakeFiles/App.dir/sandBox.cpp.o: /home/ironowl/dev/ParticleSystem/sandBox.cpp \
 /usr/include/endian.h:
 
 /usr/include/c++/14.1.1/bits/nested_exception.h:
+
+/usr/include/c++/14.1.1/bits/locale_facets.tcc:
+
+/usr/include/glm/detail/type_vec1.inl:
 
 /usr/include/c++/14.1.1/bits/locale_classes.h:
 
@@ -1242,27 +1245,21 @@ CMakeFiles/App.dir/sandBox.cpp.o: /home/ironowl/dev/ParticleSystem/sandBox.cpp \
 
 /usr/include/bits/atomic_wide_counter.h:
 
-/usr/include/c++/14.1.1/bits/predefined_ops.h:
-
-/usr/include/bits/time.h:
-
-/usr/include/glm/ext/matrix_double2x2_precision.hpp:
-
-/usr/include/bits/stdio_lim.h:
-
-/usr/include/c++/14.1.1/bits/stl_uninitialized.h:
-
-/usr/include/c++/14.1.1/bits/basic_ios.tcc:
-
-/usr/include/c++/14.1.1/stdexcept:
-
-/usr/include/bits/local_lim.h:
-
-/usr/include/c++/14.1.1/cassert:
-
-/usr/include/c++/14.1.1/bits/functional_hash.h:
-
 /usr/include/bits/endianness.h:
+
+/usr/include/bits/mathcalls.h:
+
+/usr/include/c++/14.1.1/cstdint:
+
+/usr/include/c++/14.1.1/bits/requires_hosted.h:
+
+/usr/include/c++/14.1.1/bits/stl_iterator.h:
+
+/usr/include/c++/14.1.1/bits/streambuf.tcc:
+
+/usr/include/strings.h:
+
+/usr/include/glm/detail/compute_common.hpp:
 
 /usr/include/bits/libm-simd-decl-stubs.h:
 
@@ -1284,9 +1281,29 @@ CMakeFiles/App.dir/sandBox.cpp.o: /home/ironowl/dev/ParticleSystem/sandBox.cpp \
 
 /usr/include/c++/14.1.1/bits/ios_base.h:
 
+/usr/include/c++/14.1.1/bits/predefined_ops.h:
+
+/usr/include/bits/time.h:
+
+/usr/include/glm/ext/matrix_double2x2_precision.hpp:
+
+/usr/include/bits/stdio_lim.h:
+
+/usr/include/c++/14.1.1/bits/stl_uninitialized.h:
+
 /usr/include/bits/time64.h:
 
 /usr/include/bits/stdlib-float.h:
+
+/usr/include/c++/14.1.1/cassert:
+
+/usr/include/c++/14.1.1/bits/functional_hash.h:
+
+/usr/include/c++/14.1.1/bits/basic_ios.tcc:
+
+/usr/include/c++/14.1.1/stdexcept:
+
+/usr/include/bits/local_lim.h:
 
 /usr/include/c++/14.1.1/ext/numeric_traits.h:
 
@@ -1295,22 +1312,6 @@ CMakeFiles/App.dir/sandBox.cpp.o: /home/ironowl/dev/ParticleSystem/sandBox.cpp \
 /usr/include/c++/14.1.1/bits/locale_classes.tcc:
 
 /usr/include/bits/types/cookie_io_functions_t.h:
-
-/usr/include/c++/14.1.1/bits/locale_facets.tcc:
-
-/home/ironowl/dev/ParticleSystem/glfw/include/GLFW/glfw3.h:
-
-/usr/include/c++/14.1.1/bits/exception.h:
-
-/usr/include/bits/types/locale_t.h:
-
-/usr/include/bits/byteswap.h:
-
-/home/ironowl/dev/ParticleSystem/particleSystem.hpp:
-
-/home/ironowl/dev/ParticleSystem/particleSystem.cpp:
-
-/home/ironowl/dev/ParticleSystem/shaderLib/shader.h:
 
 /usr/include/bits/types/struct_itimerspec.h:
 
@@ -1336,17 +1337,29 @@ CMakeFiles/App.dir/sandBox.cpp.o: /home/ironowl/dev/ParticleSystem/sandBox.cpp \
 
 /usr/include/c++/14.1.1/cstdlib:
 
+/home/ironowl/dev/ParticleSystem/shaderLib/shader.h:
+
+/home/ironowl/dev/ParticleSystem/particleSystem.cpp:
+
 /usr/include/c++/14.1.1/bits/locale_facets.h:
 
 /usr/include/asm-generic/errno-base.h:
 
 /usr/include/c++/14.1.1/x86_64-pc-linux-gnu/bits/ctype_base.h:
 
+/usr/include/bits/byteswap.h:
+
+/home/ironowl/dev/ParticleSystem/particleSystem.hpp:
+
 /usr/include/glm/ext/vector_int3_sized.hpp:
 
 /usr/include/assert.h:
 
 /usr/include/c++/14.1.1/cwchar:
+
+/usr/include/c++/14.1.1/bits/exception.h:
+
+/usr/include/bits/types/locale_t.h:
 
 /usr/include/bits/types/timer_t.h:
 
@@ -1410,15 +1423,15 @@ CMakeFiles/App.dir/sandBox.cpp.o: /home/ironowl/dev/ParticleSystem/sandBox.cpp \
 
 /usr/include/c++/14.1.1/bits/memoryfwd.h:
 
+/usr/include/c++/14.1.1/string:
+
+/usr/include/bits/endian.h:
+
 /usr/include/c++/14.1.1/clocale:
 
 /usr/include/bits/stdint-uintn.h:
 
 /usr/include/asm/errno.h:
-
-/usr/include/c++/14.1.1/string:
-
-/usr/include/bits/endian.h:
 
 /usr/include/c++/14.1.1/bits/ostream_insert.h:
 
@@ -1431,20 +1444,6 @@ CMakeFiles/App.dir/sandBox.cpp.o: /home/ironowl/dev/ParticleSystem/sandBox.cpp \
 /usr/include/bits/sched.h:
 
 /usr/include/bits/types/__FILE.h:
-
-/usr/include/bits/mathcalls.h:
-
-/usr/include/c++/14.1.1/cstdint:
-
-/usr/include/c++/14.1.1/bits/requires_hosted.h:
-
-/usr/include/c++/14.1.1/bits/stl_iterator.h:
-
-/usr/include/c++/14.1.1/bits/streambuf.tcc:
-
-/usr/include/strings.h:
-
-/usr/include/glm/detail/compute_common.hpp:
 
 /usr/include/c++/14.1.1/bits/specfun.h:
 

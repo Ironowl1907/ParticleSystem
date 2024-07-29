@@ -28,12 +28,19 @@ void GLAPIENTRY MessageCallback(GLenum source, GLenum type, GLuint id,
 
 ParticleSystem partSys;
 ParticleProp defaultParticle;
-void cursor_position_callback(GLFWwindow *window, double xpos, double ypos) {
+
+void processInput(GLFWwindow *window) {
+  double xpos, ypos;
+  glfwGetCursorPos(window, &xpos, &ypos);
   float ndc_x = xpos / 800.0 * 2.0 - 1.0;
   float ndc_y = 1.0 - ypos / 800.0 * 2.0;
-  defaultParticle.position.x = ndc_x;
-  defaultParticle.position.y = ndc_y;
-  partSys.emit(defaultParticle);
+
+  if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS) {
+    defaultParticle.position.x = ndc_x;
+    defaultParticle.position.y = ndc_y;
+    for (int i = 0; i < 5; i++)
+      partSys.emit(defaultParticle);
+  }
 }
 
 int main() {
@@ -71,7 +78,6 @@ int main() {
   glEnable(GL_DEBUG_OUTPUT);
   glEnable(GL_BLEND);
   glDebugMessageCallback(MessageCallback, 0);
-  glfwSetCursorPosCallback(window, cursor_position_callback);
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
   // Set the viewport
@@ -79,7 +85,7 @@ int main() {
   glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
   defaultParticle.position = {0.5f, 0.5f};
-  defaultParticle.velocity = {-0.02f, -0.04};
+  defaultParticle.velocity = {-0.1f, -0.54};
   defaultParticle.ColorBegin = {1.0f, 0.0f, 0.0f, 1.0f};
   defaultParticle.ColorEnd = {1.0f, 1.0f, 1.0f, 0.0f};
   defaultParticle.rotation = 50.0f;
@@ -105,6 +111,8 @@ int main() {
     float currentFrame = glfwGetTime();
     deltaTime = currentFrame - lastFrame;
     lastFrame = currentFrame;
+
+    processInput(window);
 
     // Render
     partSys.onUpdate(deltaTime);
