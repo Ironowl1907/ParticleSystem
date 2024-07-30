@@ -7,6 +7,8 @@
 #include <iostream>
 #include <vector>
 
+#include "Random.hpp"
+
 #include "particle.hpp"
 #include "particleSystem.hpp"
 
@@ -29,17 +31,28 @@ void GLAPIENTRY MessageCallback(GLenum source, GLenum type, GLuint id,
 ParticleSystem partSys;
 ParticleProp defaultParticle;
 
+Random ranf;
+
+float inputCoolDown = 0;
 void processInput(GLFWwindow *window) {
+  if (inputCoolDown < 0.05f)
+    return;
+  inputCoolDown = 0;
   double xpos, ypos;
   glfwGetCursorPos(window, &xpos, &ypos);
   float ndc_x = xpos / 800.0 * 2.0 - 1.0;
   float ndc_y = 1.0 - ypos / 800.0 * 2.0;
 
   if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS) {
-    defaultParticle.position.x = ndc_x;
-    defaultParticle.position.y = ndc_y;
-    for (int i = 0; i < 5; i++)
-      partSys.emit(defaultParticle);
+    for (int i = 0; i < 5; i++) {
+      defaultParticle.position.x = ndc_x;
+      defaultParticle.position.y = ndc_y;
+      defaultParticle.rotation = 180 * ranf.Float();
+      defaultParticle.velocity.x = ranf.Float() - 0.5f;
+      defaultParticle.velocity.y = ranf.Float() - 0.5f;
+      for (int i = 0; i < 5; i++)
+        partSys.emit(defaultParticle);
+    }
   }
 }
 
@@ -113,7 +126,7 @@ int main() {
     lastFrame = currentFrame;
 
     processInput(window);
-
+    inputCoolDown += deltaTime;
     // Render
     partSys.onUpdate(deltaTime);
     partSys.onRender(view);
