@@ -44,14 +44,13 @@ void processInput(GLFWwindow *window) {
   float ndc_y = 1.0 - ypos / 800.0 * 2.0;
 
   if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS) {
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 10; i++) {
       defaultParticle.position.x = ndc_x;
       defaultParticle.position.y = ndc_y;
       defaultParticle.rotation = 180 * ranf.Float();
       defaultParticle.velocity.x = ranf.Float() - 0.5f;
       defaultParticle.velocity.y = ranf.Float() - 0.5f;
-      for (int i = 0; i < 5; i++)
-        partSys.emit(defaultParticle);
+      partSys.emit(defaultParticle);
     }
   }
 }
@@ -99,13 +98,14 @@ int main() {
 
   defaultParticle.position = {0.5f, 0.5f};
   defaultParticle.velocity = {-0.1f, -0.54};
-  defaultParticle.ColorBegin = {1.0f, 0.0f, 0.0f, 1.0f};
+  defaultParticle.friction = 0.5;
+  defaultParticle.ColorBegin = {0.0f, 0.0f, 1.0f, 1.0f};
   defaultParticle.ColorEnd = {1.0f, 1.0f, 1.0f, 0.0f};
   defaultParticle.rotation = 50.0f;
-  defaultParticle.sizeBegin = 0.2f;
-  defaultParticle.sizeEnd = 0.1f;
+  defaultParticle.sizeBegin = 0.05f;
+  defaultParticle.sizeEnd = 0.05f;
 
-  defaultParticle.live = 1.0f;
+  defaultParticle.live = 2.0f;
 
   // Camera
   glm::vec3 camera_pos = glm::vec3(0.0f, 0.0f, 1.0f);

@@ -31,15 +31,17 @@ void ParticleSystem::onUpdate(const float &deltatime) {
   for (Particle &part : particlePool) {
     if (!part.alive)
       continue;
-    /*std::cout << "Particle " << &part - &particlePool[0] << ": Position = ("*/
-    /*          << part.position.x << ", " << part.position.y*/
+    /*std::cout << "Particle " << &part - &particlePool[0] << ": Velocity= ("*/
+    /*          << part.velocity.x << ", " << part.velocity.y*/
     /*          << "), Remaining Life = " << part.remainingLife << '\n';*/
     if (part.remainingLife < 0) {
       part.alive = false;
       continue;
     }
     part.remainingLife -= deltatime;
-    part.position += glm::vec2(part.velocity.x, part.velocity.y) * deltatime;
+    part.velocity = part.velocity * (1 - part.friction * deltatime);
+
+    part.position += part.velocity * deltatime;
   }
 }
 void ParticleSystem::onRender(const glm::mat4 &cameraView) {
@@ -122,6 +124,7 @@ void ParticleSystem::emit(const ParticleProp &prop) {
 
   part.position = prop.position;
   part.velocity = prop.velocity;
+  part.friction = prop.friction;
 
   part.ColorBegin = prop.ColorBegin;
   part.ColorEnd = prop.ColorEnd;
