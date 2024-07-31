@@ -5,7 +5,6 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <iostream>
-#include <vector>
 
 #include "Random.hpp"
 
@@ -35,7 +34,7 @@ Random ranf;
 
 float inputCoolDown = 0;
 void processInput(GLFWwindow *window) {
-  if (inputCoolDown < 0.05f)
+  if (inputCoolDown < 0.005f)
     return;
   inputCoolDown = 0;
   double xpos, ypos;
@@ -44,7 +43,7 @@ void processInput(GLFWwindow *window) {
   float ndc_y = 1.0 - ypos / 800.0 * 2.0;
 
   if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS) {
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 100; i++) {
       defaultParticle.position.x = ndc_x;
       defaultParticle.position.y = ndc_y;
       defaultParticle.rotation = 180 * ranf.Float();
@@ -77,6 +76,7 @@ int main() {
     return -1;
   }
   glfwMakeContextCurrent(window);
+  /*glfwSwapInterval(0);*/ // Unlimit FPS
 
   // glad: load all OpenGL function pointers
   if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
@@ -98,14 +98,14 @@ int main() {
 
   defaultParticle.position = {0.5f, 0.5f};
   defaultParticle.velocity = {-0.1f, -0.54};
-  defaultParticle.friction = 0.5;
+  defaultParticle.friction = 0.9;
   defaultParticle.ColorBegin = {0.0f, 0.0f, 1.0f, 1.0f};
   defaultParticle.ColorEnd = {1.0f, 1.0f, 1.0f, 0.0f};
   defaultParticle.rotation = 50.0f;
-  defaultParticle.sizeBegin = 0.05f;
-  defaultParticle.sizeEnd = 0.05f;
+  defaultParticle.sizeBegin = 0.01f;
+  defaultParticle.sizeEnd = 0.001f;
 
-  defaultParticle.live = 2.0f;
+  defaultParticle.live = 5.0f;
 
   // Camera
   glm::vec3 camera_pos = glm::vec3(0.0f, 0.0f, 1.0f);
@@ -124,6 +124,8 @@ int main() {
     float currentFrame = glfwGetTime();
     deltaTime = currentFrame - lastFrame;
     lastFrame = currentFrame;
+
+    std::cout << 1 / deltaTime << '\n';
 
     processInput(window);
     inputCoolDown += deltaTime;
