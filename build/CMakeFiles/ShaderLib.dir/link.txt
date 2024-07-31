@@ -1,2 +1,0 @@
-/usr/bin/ar qc libShaderLib.a CMakeFiles/ShaderLib.dir/shaderLib/main.cpp.o
-/usr/bin/ranlib libShaderLib.a
