@@ -32,8 +32,8 @@ void ParticleSystem::onUpdate(const float &deltatime) {
     if (!part.alive)
       continue;
     /*std::cout << "Particle " << &part - &particlePool[0] << ": Velocity= ("*/
-    /*          << part.velocity.x << ", " << part.velocity.y*/
-    /*          << "), Remaining Life = " << part.remainingLife << '\n';*/
+    /*          << part.velocity << "), Position = " << part.position.x << ' '*/
+    /*          << part.position.y << '\n';*/
     if (part.remainingLife < 0) {
       part.alive = false;
       continue;
@@ -41,7 +41,10 @@ void ParticleSystem::onUpdate(const float &deltatime) {
     part.remainingLife -= deltatime;
     part.velocity = part.velocity * (1 - part.friction * deltatime);
 
-    part.position += part.velocity * deltatime;
+    part.position = part.position + part.direction * part.velocity * deltatime;
+    /*std::cout << "direction: ( " << part.direction.x << ' ' <<
+     * part.direction.y*/
+    /*          << ") velocity: (" << part.velocity << ")\n";*/
   }
 }
 void ParticleSystem::onRender(const glm::mat4 &cameraView) {
@@ -123,6 +126,7 @@ void ParticleSystem::emit(const ParticleProp &prop) {
   Particle &part = particlePool[poolIndex];
 
   part.position = prop.position;
+  part.direction = prop.direction;
   part.velocity = prop.velocity;
   part.friction = prop.friction;
 

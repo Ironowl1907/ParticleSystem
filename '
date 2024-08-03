@@ -43,12 +43,11 @@ void processInput(GLFWwindow *window) {
   float ndc_y = 1.0 - ypos / 800.0 * 2.0;
 
   if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS) {
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 100; i++) {
       defaultParticle.position.x = ndc_x;
       defaultParticle.position.y = ndc_y;
       defaultParticle.rotation = 180 * ranf.Float();
       defaultParticle.velocity = ranf.Float();
-      defaultParticle.direction = {ranf.Float() - 0.5f, ranf.Float() - 0.5f};
       partSys.emit(defaultParticle);
     }
   }
@@ -97,7 +96,7 @@ int main() {
   glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
   defaultParticle.position = {0.5f, 0.5f};
-  defaultParticle.velocity = 0.1f;
+  defaultParticle.velocity = {-0.1f, -0.54};
   defaultParticle.friction = 0.9;
   defaultParticle.ColorBegin = {0.0f, 0.0f, 1.0f, 1.0f};
   defaultParticle.ColorEnd = {1.0f, 1.0f, 1.0f, 0.0f};
