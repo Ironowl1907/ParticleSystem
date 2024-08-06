@@ -11,8 +11,9 @@
 #include "particle.hpp"
 #include "particleSystem.hpp"
 
-const unsigned int WINDOW_HEIGHT = 800;
+
 const unsigned int WINDOW_WIDTH = 800;
+const unsigned int WINDOW_HEIGHT = 800;
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
   glViewport(0, 0, width, height);
